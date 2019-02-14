@@ -1,0 +1,21 @@
+<h1>Memster</h1>
+<div id="id01"></div>
+<script type="application/javascript">
+var url_string = window.location.href;
+var url = new URL(url_string);
+var id = url.searchParams.get("id");
+console.log(id);
+
+var xmlhttp = new XMLHttpRequest();
+var url = 'https://seismograph-frosts.000webhostapp.com/memster/single_view.php?id='+id;
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var myArr = JSON.parse(this.responseText);
+        console.log(myArr);
+        document.getElementById("id01").innerHTML = '<img src="https://seismograph-frosts.000webhostapp.com/memster/media/' + myArr.IMG_FILE + '">';
+    }
+};
+xmlhttp.open("GET", url, true);
+xmlhttp.send();
+</script>
