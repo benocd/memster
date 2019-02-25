@@ -1,10 +1,49 @@
-<h1>Memster</h1>
-<div id="id01"></div>
+<!DOCTYPE html>
+<html>
+<title>Memster</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-padding w3-card">
+    <div class="w3-center">
+      <a href="index.html">
+      <img src="img/Layer-13.png" class="w3-image" style="height: 32px;width: auto;filter: invert(100%);">
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="w3-row w3" style="padding-top:50px;">
+  <div class="w3-quarter w3-container w3-hide-small">
+    &nbsp;
+  </div>
+  <div class="w3-half w3-container w3-theme">
+    <div class="w3-section w3-container">
+      <div class="w3-card-4">
+        <div id="id01"></div>
+        <div class="w3-container w3-light-grey w3-center">
+          <p>Comparte este meme:<br><input type="text" class="w3-input w3-border" size="50" id="url_txt" /></p>
+          <a href="https://play.google.com/store/apps/details?id=com.memstersa.Memster" target="_blank">
+          <img src="img/disponible-en-google-play-png-3.png" style="width:auto;height:50px; margin-bottom: 10px;"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w3-quarter w3-container w3-hide-small">
+    &nbsp;
+  </div>
+</div>
+
 <script type="application/javascript">
 var url_string = window.location.href;
 var url = new URL(url_string);
 var id = url.searchParams.get("id");
 console.log(id);
+
+document.getElementById("url_txt").value = url_string;
 
 var xmlhttp = new XMLHttpRequest();
 var url = 'https://seismograph-frosts.000webhostapp.com/memster/single_view.php?id='+id;
@@ -13,9 +52,10 @@ xmlhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         var myArr = JSON.parse(this.responseText);
         console.log(myArr);
-        document.getElementById("id01").innerHTML = '<img src="https://seismograph-frosts.000webhostapp.com/memster/media/' + myArr.IMG_FILE + '">';
+        document.getElementById("id01").innerHTML = '<img src="https://seismograph-frosts.000webhostapp.com/memster/media/' + myArr.IMG_FILE + '" style="width:100%;">';
     }
 };
 xmlhttp.open("GET", url, true);
 xmlhttp.send();
 </script>
+</html>
